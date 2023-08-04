@@ -1,0 +1,4 @@
+Flask==2.3.2
+g4f==0.0.1.3
+replicate==0.9.0
+Requests==2.31.0
