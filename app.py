@@ -6,6 +6,8 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+port = int(os.environ.get('PORT', 5000))
+
 def talk(text , language):
  if language == 'ar':
   post_url = "https://play.ht/api/v1/convert"
@@ -184,4 +186,4 @@ def transcribe():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=port)
