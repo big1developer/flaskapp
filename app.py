@@ -93,7 +93,7 @@ def transcribe_audio(audio_file_path , language):
             model="large-v2",  # Choose the Whisper model (large or large-v2)
             transcription="plain text",  # Choose the format for the transcription (plain text, srt, or vtt)
             translate=False,  # Set to True if you want the text to be translated to English
-            language='ar',  # Specify the language spoken in the audio (or None for language detection)
+            language='en',  # Specify the language spoken in the audio (or None for language detection)
             temperature=0,  # Temperature to use for sampling
             patience=1.0,  # Optional patience value to use in beam decoding
             suppress_tokens="-1",  # Comma-separated list of token ids to suppress during sampling
@@ -143,7 +143,7 @@ def transcribe():
          temp = "\nUser: " + transcription + "\nDr. Mohamed: "
         chat_data += temp
         try :
-         response = g4f.ChatCompletion.create(model='gpt-4', provider=g4f.Provider.GetGpt,
+         response = g4f.ChatCompletion.create(model='gpt-3.5-turbo', provider=g4f.Provider.GetGpt,
                                              messages=[
 
                                                 {"role": "user", "content": chat_data}
@@ -151,7 +151,7 @@ def transcribe():
                                                        ])
         except Exception as e:
            try :
-                       response = g4f.ChatCompletion.create(model='gpt-4', provider=g4f.Provider.Aichat,
+                       response = g4f.ChatCompletion.create(model='gpt-3.5-turbo', provider=g4f.Provider.Aichat,
                                              messages=[
 
                                                 {"role": "user", "content": chat_data}
@@ -159,7 +159,7 @@ def transcribe():
                                                        ])
            except Exception as e:
              try:
-                                      response = g4f.ChatCompletion.create(model='gpt-4', provider=g4f.Provider.EasyChat,
+                                      response = g4f.ChatCompletion.create(model='gpt-3.5-turbo', provider=g4f.Provider.EasyChat,
                                              messages=[
 
                                                 {"role": "user", "content": chat_data}
