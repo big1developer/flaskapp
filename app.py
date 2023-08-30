@@ -140,11 +140,9 @@ def transcribe():
         print(transcription)
         print("transcribing done")
         os.remove('temp_audio.wav')
-        if language == 'ar' :
-         temp = "\nالمستخدم: " + transcription + "\nدكتور محمد: "
-        else:
-         temp = "\nUser: " + transcription + "\nDr. Mohamed: "
+        temp = "\nUser: " + transcription + "\nDr. Mohamed: "
         chat_data += temp
+        print("getting ai response")
         response = g4f.ChatCompletion.create(
              model="gpt-3.5-turbo",
              provider=g4f.Provider.DeepAi,
