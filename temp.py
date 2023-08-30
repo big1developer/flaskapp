@@ -1,12 +1,5 @@
-import os
-import replicate
-import g4f
 import requests
-from flask import Flask, request, jsonify
-
-app = Flask(__name__)
-
-
+import replicate
 def talk(text , language):
  if language == 'ar':
   post_url = "https://play.ht/api/v1/convert"
@@ -93,7 +86,7 @@ def transcribe_audio(audio_file_path , language):
             model="large-v2",  # Choose the Whisper model (large or large-v2)
             transcription="plain text",  # Choose the format for the transcription (plain text, srt, or vtt)
             translate=False,  # Set to True if you want the text to be translated to English
-            language='ar',  # Specify the language spoken in the audio (or None for language detection)
+            language='en',  # Specify the language spoken in the audio (or None for language detection)
             temperature=0,  # Temperature to use for sampling
             patience=1.0,  # Optional patience value to use in beam decoding
             suppress_tokens="-1",  # Comma-separated list of token ids to suppress during sampling
@@ -112,12 +105,5 @@ def transcribe_audio(audio_file_path , language):
         return None
 
 
-# Define a route for handling audio recording and transcription
-@app.route('/transcribe', methods=['POST'])
 
-def transcribe():
- return jsonify({'sec'}), 200
-
-
-if __name__ == "__main__":
-    app.run()
+print(transcribe_audio("p56aV6r1cTAoiK4tGk_0.mp3","en"))
