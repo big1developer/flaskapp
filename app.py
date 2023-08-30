@@ -146,7 +146,7 @@ def transcribe():
         response = g4f.ChatCompletion.create(
              model="gpt-3.5-turbo",
              provider=g4f.Provider.DeepAi,
-             messages=[{"role": "user", "content": "who are you"}],
+             messages=[{"role": "user", "content": chat_data}],
              stream=False,
                  )
         chat_data += response
