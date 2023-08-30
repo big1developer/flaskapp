@@ -92,8 +92,8 @@ def transcribe_audio(audio_file_path , language):
             input={"audio": open(audio_file_path, "rb")},
             model="large-v2",  # Choose the Whisper model (large or large-v2)
             transcription="plain text",  # Choose the format for the transcription (plain text, srt, or vtt)
-            translate=True,  # Set to True if you want the text to be translated to English
-            language='en',  # Specify the language spoken in the audio (or None for language detection)
+            translate=False,  # Set to True if you want the text to be translated to English
+            language='ar',  # Specify the language spoken in the audio (or None for language detection)
             temperature=0,  # Temperature to use for sampling
             patience=1.0,  # Optional patience value to use in beam decoding
             suppress_tokens="-1",  # Comma-separated list of token ids to suppress during sampling
