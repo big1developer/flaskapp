@@ -145,33 +145,12 @@ def transcribe():
         else:
          temp = "\nUser: " + transcription + "\nDr. Mohamed: "
         chat_data += temp
-        try :
-         response = g4f.ChatCompletion.create(model='gpt-3.5-turbo', provider=g4f.Provider.GetGpt,
-                                             messages=[
-
-                                                {"role": "user", "content": chat_data}
-
-                                                       ])
-        except Exception as e:
-           try :
-                       response = g4f.ChatCompletion.create(model='gpt-3.5-turbo', provider=g4f.Provider.Aichat,
-                                             messages=[
-
-                                                {"role": "user", "content": chat_data}
-
-                                                       ])
-           except Exception as e:
-             try:
-                                      response = g4f.ChatCompletion.create(model='gpt-3.5-turbo', provider=g4f.Provider.EasyChat,
-                                             messages=[
-
-                                                {"role": "user", "content": chat_data}
-
-                                                       ])
-             except Exception as e:
-                print(e)
-
-
+        response = g4f.ChatCompletion.create(
+             model="gpt-3.5-turbo",
+             provider=g4f.Provider.DeepAi,
+             messages=[{"role": "user", "content": "who are you"}],
+             stream=False,
+                 )
         chat_data += response
         print(chat_data)
         if(response):

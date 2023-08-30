@@ -107,11 +107,11 @@ def transcribe_audio(audio_file_path , language):
         return None
 
 
-response = g4f.ChatCompletion.create(model='gpt-3.5-turbo', provider=g4f.Provider.GetGpt,
-                                             messages=[
-
-                                                {"role": "user", "content": "hi there"}
-
-                                                       ])
+response = g4f.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    provider=g4f.Provider.DeepAi,
+    messages=[{"role": "user", "content": "who are you"}],
+    stream=False,
+)
 
 print(response)
