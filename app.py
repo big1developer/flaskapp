@@ -116,7 +116,73 @@ def transcribe_audio(audio_file_path , language):
 @app.route('/transcribe', methods=['POST'])
 
 def transcribe():
- return jsonify({'sec'}), 200
+    if 'audio' not in request.files:
+        return jsonify({'error': 'No audio file received.'}), 400
+
+    audio_file = request.files['audio']
+    chat_data = request.form.get('chat_data')
+    language = request.form.get('language')
+
+    print(chat_data)
+
+    print("audio received")
+
+    try:
+        # Save the audio file to a temporary file
+        audio_file.save('temp_audio.wav')
+
+        print("transcribing audio...")
+        # Transcribe the audio file
+        transcription = transcribe_audio('temp_audio.wav' , language)
+        print(transcription)
+        print("transcribing done")
+        os.remove('temp_audio.wav')
+        if language == 'ar' :
+         temp = "\nالمستخدم: " + transcription + "\nدكتور محمد: "
+        else:
+         temp = "\nUser: " + transcription + "\nDr. Mohamed: "
+        chat_data += temp
+        try :
+         response = g4f.ChatCompletion.create(model='gpt-4', provider=g4f.Provider.GetGpt,
+                                             messages=[
+
+                                                {"role": "user", "content": chat_data}
+
+                                                       ])
+        except Exception as e:
+           try :
+                       response = g4f.ChatCompletion.create(model='gpt-4', provider=g4f.Provider.Aichat,
+                                             messages=[
+
+                                                {"role": "user", "content": chat_data}
+
+                                                       ])
+           except Exception as e:
+             try:
+                                      response = g4f.ChatCompletion.create(model='gpt-4', provider=g4f.Provider.EasyChat,
+                                             messages=[
+
+                                                {"role": "user", "content": chat_data}
+
+                                                       ])
+             except Exception as e:
+                print(e)
+
+
+        chat_data += response
+        print(chat_data)
+        if(response):
+            url = talk(response , language)
+            if url :
+             return jsonify({'transcription': response ,'chat_data':chat_data, 'audio_url' : url}), 200
+            else:
+             return jsonify({'error': 'audio failed.'}), 500
+        else:
+           return jsonify({'error': 'response failed.'}), 500
+
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 200
 
 
 if __name__ == "__main__":
