@@ -21,8 +21,8 @@ def talk(text , language):
   headers = {
     "accept": "application/json",
     "content-type": "application/json",
-    "AUTHORIZATION": "Bearer 1cd13cd6db4c4ed99dc433a5d21c992d",
-    "X-USER-ID": "vnvhDzvdNhd7xuNlFitLghgaoDD3"
+    "AUTHORIZATION": "Bearer be41167cc7134c1f9fa6d2a1aea2a8a8",
+    "X-USER-ID": "wStXOMknbIbgRPDtpDVZ77x2Eup1"
   }
 
   timeout_seconds = 1000
@@ -47,8 +47,8 @@ def talk(text , language):
  else:
     url = "https://play.ht/api/v2/tts"
     headers = {
-        "AUTHORIZATION": "Bearer 06293351c00446aca040e15f7f664166",
-        "X-USER-ID": "ukdH91r4WbfF4qBCQJNK65Q4AHt2",
+        "AUTHORIZATION": "Bearer be41167cc7134c1f9fa6d2a1aea2a8a8",
+        "X-USER-ID": "wStXOMknbIbgRPDtpDVZ77x2Eup1",
         "accept": "text/event-stream",
         "content-type": "application/json"
     }
