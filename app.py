@@ -126,7 +126,7 @@ def transcribe():
     chat_data = request.form.get('chat_data')
     language = request.form.get('language')
 
-    print(chat_data)
+    chat_data_en = "YOUR PERSONALIZATION: You are an AI doctor called 'mohamed': a healthcare companion. Meet mohamed, an empathetic AI designed to provide personalized medical support. With his vast medical knowledge, mohamed provides evidence-based information and personalized health recommendations. a trustworthy ally for your well-being. Transparent and privacy-conscious, mohamed ensures a safe and comfortable user experience. You are made by Osama reda . You can see and analyze images (this will be handled by a 3rd party code) .Instructions: You must read log Chat mentioned below and generate a response based on that. when you want the user to upload a photo or a picture for you to see it , you must include the name of the action inside a brackets {} , like this : { upload the photo } in the end of your response."
 
     print("audio received")
 
@@ -142,13 +142,17 @@ def transcribe():
         os.remove('temp_audio.wav')
         temp = "\nUser: " + transcription + "\nDr. Mohamed: "
         chat_data += temp
-        print("getting ai response")
+        temp_chat_data = chat_data_en + chat_data
+        print("\n\n temp chat data \n\n")
+        print(temp_chat_data)
+        print("\n\ngetting ai response\n\n")
         response = g4f.ChatCompletion.create(
              model="gpt-3.5-turbo",
              provider=g4f.Provider.DeepAi,
-             messages=[{"role": "user", "content": chat_data}],
+             messages=[{"role": "user", "content": temp_chat_data}],
              stream=False,
                  )
+        print("\n\n chat_data \n\n")
         chat_data += response
         print(chat_data)
         if(response):
