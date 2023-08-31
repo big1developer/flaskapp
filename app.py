@@ -143,7 +143,7 @@ Instructions: You must read log Chat mentioned below and generate a response bas
         print(transcription)
         print("transcribing done")
         os.remove('temp_audio.wav')
-        temp = "\nUser: " + transcription + "\nDr. Mohamed: "
+        temp = "\nUser: " + transcription + "\nSpinova: "
         chat_data += temp
         temp_chat_data = chat_data_en + chat_data
         print("\n\n temp chat data \n\n")
